@@ -18,7 +18,7 @@ const PlaylistTitleStyle = styled.p`
   font-size: 1.1em;
 `;
 
-const Playlist = () => {
+const PlayList = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dispatch = useDispatch();
@@ -47,4 +47,4 @@ const Playlist = () => {
   return <div>{renderDatas()}</div>;
 };
 
-export default Playlist;
+export default PlayList;

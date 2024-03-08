@@ -2,28 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { Btn, Logo , Heading, Section } from "../../atoms";
 
-import { FaRegCircleUser } from "react-icons/fa6";
-
 const StyleNavBar = styled.div`
     height: fit-content;
     width: 100%;
-    background : ${(props) =>
-    props.background ? props.background : props.theme.tertiary};
-    color: ${(props) => (props.color ? props.color : props.theme.textNavbar)};
+    background : ${(props) => props.background ? props.background : props.theme.tertiary};
     display: flex;
     padding: 16px;
 `;
 
-const NavBar = ({ title, text,icon, ...props }) => {
+const NavBar = ({ title, text,icon, handler, ...props }) => {
     
   return (
-    <StyleNavBar>
+    <StyleNavBar handler={handler}>
 
         <Section>
-            <Heading >{title}</Heading>
+            <Heading marginLeft="8px">{title}</Heading>
         </Section>
-        <Logo></Logo>
-        <Btn text={text} icon={<FaRegCircleUser />} > </Btn>
+        <Logo marginLeft="8px"></Logo>
+        <Btn text={text}> </Btn>
+        <Btn text="Vendre un composant" > </Btn>
+        {props.children}
     </StyleNavBar>
   );
 };

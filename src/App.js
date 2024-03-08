@@ -6,25 +6,18 @@ import {
   Card,
   Paragraph,
   Btn,
-  Section,
-  Heading,
 } from "./components/atoms";
 import {
   FaCarrot,
   FaLemon,
   FaPepperHot,
 } from "react-icons/fa";
-import {Menu, Form, CardList} from './components/organisms'
+import {Menu, Form, CardList, NavBar, TodoList, TodoListCopy} from './components/organisms'
 import { NightModeSwitch } from "./components/molecules";
 import { NightModeProvider } from "./contexts"
-
-import style from "./App.css"
-import TodoList from "./components/organisms/TodoList/TodoList";
-import TodoListCopy from "./components/organisms/TodoListCopy/TodoListCopy.jsx";
-import {NavBar} from './components/organisms'
 import { Provider } from "react-redux";
 import { store } from "./store";
-import Playlist from "./components/organisms/PlayList/PlayList.jsx"
+import PlayList from "./components/organisms/PlayList/PlayList.jsx"
 
 // Style 
 const StyledCard = styled.section`
@@ -144,7 +137,7 @@ function App() {
           </div>
         );
       case "lemon":
-        return <Playlist>Lemon</Playlist>;
+        return <PlayList>Lemon</PlayList>;
       default:
       case "chili":
         return <div>Chilly</div>;
@@ -166,16 +159,18 @@ function App() {
         }}
       >
         <StyledAppContainer> 
-          <NavBar title="Element Craft" text="profil"></NavBar>
+          <NavBar title="Element Craft" text="profil">
+            <NightModeSwitch
+              isNightMode={isNightMode}
+              handler={handleNightMode}
+             ></NightModeSwitch>
+          </NavBar>
             <StyleCardList>
               <CardList data={cardData}></CardList> 
             </StyleCardList>
                    
             <Menu data={menuData} handler={handler}>
-              <NightModeSwitch
-                isNightMode={isNightMode}
-                handler={handleNightMode}
-              ></NightModeSwitch>
+              
               </Menu>
               <TodoList></TodoList>
               <TodoListCopy></TodoListCopy>

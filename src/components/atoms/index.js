@@ -9,7 +9,6 @@ import Heading from "./Heading/Heading.jsx";
 import InputCheckbox from "./InputCheckbox/InputCheckbox.jsx";
 import ListItem from "./ListItem/ListItem.jsx";
 import List from "./List/List.jsx";
-import Image from "./Image/Image.jsx";
 import Logo from "./Logo/Logo.jsx";
 
-export { Btn, Card, Divider, InputText, Paragraph, Clock, Section, Heading, InputCheckbox,ListItem, Image, List, Logo };
+export { Btn, Card, Divider, InputText, Paragraph, Clock, Section, Heading, InputCheckbox,ListItem, List, Logo };

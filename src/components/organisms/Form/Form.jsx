@@ -7,7 +7,6 @@ const Form = ({ handler, data }) => {
 
 
     const nightTheme = (changeEvent) => {
-        console.log("function called");
 
         if (changeEvent.target.value === "night") {
             

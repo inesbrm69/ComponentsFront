@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const  headingStyle =`
     background : transparent;
-    color: ${(props) => (props.color ? props.color : props.theme.textNavbar)};
+    color: white;
     &:hover{
         color: ${(props) => (props.color ? props.color : props.theme.secondary)};
     }
@@ -13,25 +13,13 @@ const  headingStyle =`
     ${(props) => (props.marginLeft ? "margin-left: " + props.marginLeft + " ;" : "")};
 `;
 
-const StyleHeading1 = styled.h1(headingStyle) ;
-const StyleHeading2 = styled.h2(headingStyle) ;
-const StyleHeading3 = styled.h3(headingStyle) ;
-const StyleHeading4 = styled.h4(headingStyle) ;
-const StyleHeading5 = styled.h5(headingStyle) ;
-const StyleHeading6 = styled.h5(headingStyle) ;
-
-
-// const StyleHeading = [styled.h1(headingStyle), styled.h2(headingStyle), styled.h3(headingStyle), styled.h4(headingStyle),styled.h5(headingStyle), styled.h(headingStyle)]
-// const StyleHeading = styled.h1`
-// background : ${(props) =>
-//     props.background ? props.background : props.theme.tertiary};
-//     color: ${(props) => (props.color ? props.color : props.theme.textNavbar)};
-//     &:hover{
-//         color: ${(props) => (props.color ? props.color : props.theme.secondary)};
-//     }
-//     margin: 0;
-//     `;
-
+const StyleHeading1 = styled.h1`${headingStyle}`;
+const StyleHeading2 = styled.h2`${headingStyle}` ;
+const StyleHeading3 = styled.h3`${headingStyle}` ;
+const StyleHeading4 = styled.h4`${headingStyle}` ;
+const StyleHeading5 = styled.h5`${headingStyle}` ;
+const StyleHeading6 = styled.h6`${headingStyle}` ;
+ 
 const Heading = ({children}) => {
     const nestLevel = useContext(NestingContext);
     switch (nestLevel){

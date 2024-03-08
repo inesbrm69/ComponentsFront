@@ -3,8 +3,10 @@ import { styled } from "styled-components";
 import { NestingProvider, NestingContext } from "../../../contexts/";
 
 const StyledSection = styled.section`
-  background: ${(props) => props.theme.primary};
+  background: transparent;
   color: ${(props) => props.theme.secondary};
+  align-item: center;
+  display: flex;
 `;
 
 const Section = ({ children }) => {

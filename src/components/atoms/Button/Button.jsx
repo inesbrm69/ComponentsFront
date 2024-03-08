@@ -35,7 +35,6 @@ const StyleBtn = styled.button`
 `;
 
 const Btn = ({ icon = <></>, text = "", ...props }) => {
-  console.log(text, "text")
   return (
     <StyleBtn {...props}>
       {icon}

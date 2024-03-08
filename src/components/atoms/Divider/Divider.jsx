@@ -3,7 +3,6 @@ import React from "react";
 class Divider extends React.Component {
   constructor(props) {
     super(props);
-    console.log("Objet Actualisé");
     this.state = {
       isVisible: true,
       sentence: "tata",
@@ -11,7 +10,6 @@ class Divider extends React.Component {
     this.handleVisibility = this.handleVisibility.bind(this);
   }
   componentDidMount() {
-    console.log("to");
     this.setState(() => ({
       sentence: "toto",
     }));
@@ -30,7 +28,6 @@ class Divider extends React.Component {
   }
 
   render() {
-    console.log("Render Divider");
     return (
       <div
         onDoubleClick={this.handleVisibility}

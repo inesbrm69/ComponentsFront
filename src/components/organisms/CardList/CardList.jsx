@@ -1,22 +1,23 @@
 import React from "react";
-import { DialogCard, CompleteCard } from "../../molecules";
+import { CompleteCard } from "../../molecules";
 import styled from "styled-components";
+import { Paragraph } from "../../atoms";
 
 const StyleListCard = styled.ul`
-    display:flex;
-    flex-wrap: wrap;
+  display:flex;
+  flex-wrap: wrap;
   list-style-type: none;
+  padding: 0;
 `;
 
-const CardList = ({ data, ...props }) => {
+const CardList = ({ data,text, urlMain, title, url, ...props }) => {
   return (
     <StyleListCard>
       {data.map((x, i) => {
-        const { url } = x;
-        console.log(url)
+        const { url, text, urlMain,title } = x;
         return (
-          <CompleteCard key={i} urlMain={url} >
-          </CompleteCard>           
+          <CompleteCard key={i} urlMain={urlMain} text={text} title={title} url={url}> 
+          </CompleteCard>     
         );
       })}
       {props.children}

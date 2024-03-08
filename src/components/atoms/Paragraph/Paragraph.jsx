@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyleParagraph = styled.div`
     text-emphasis: center;
     font-size: 16px;
-    color: #333;
+    color: ${(props) => (props.color ? props.color : props.theme.textNavbar)};
     font-weight: 400;
 `;
 
