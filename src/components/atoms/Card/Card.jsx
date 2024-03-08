@@ -1,8 +1,13 @@
 import React from "react";
-import style from "./Card.module.css";
+import styled from "styled-components";
+
+
+const StyledCard = styled.div`
+    
+`;
 
 const Card = (props) => {
-return <div {...props} className={style.styleCard}>{props.children}</div>;
+return <StyledCard {...props}>{props.children}</StyledCard>;
 };
 
 export default Card;

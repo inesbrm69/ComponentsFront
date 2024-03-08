@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputText } from "../../atoms";
 
 const InputForm = ({ handler, data, icon  = <></>,text = "label", ...props }) => {
-  const [colorInput, setColorInput] = useState(false);
+  const [colorInput, setColorInput] = useState("");
   const handleChange = () => {
     handler(data);
   };

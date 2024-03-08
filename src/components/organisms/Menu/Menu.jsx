@@ -5,9 +5,9 @@ const Menu = ({ handler, data, ...props }) => {
   return (
     <div>
       {data.map((x, i) => {
-        let { icon, text, data } = x;
+        let { icon, text, slug } = x;
         return (
-          <MenuButton key={i} handler={handler} icon={icon} data={data}>
+          <MenuButton key={i} handler={handler} icon={icon} data={slug}>
             {text}
           </MenuButton>
         );

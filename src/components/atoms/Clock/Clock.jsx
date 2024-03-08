@@ -9,21 +9,16 @@ const Clock = () => {
     }, 1000);
 
     return () => {
-      console.log("Intervl cleared");
       clearInterval(clock);
     };
   }, []);
 
   useEffect(() => {
-    console.log("UseEffect Called");
   }, [tata]);
 
   
   const toto = (e) => {
-    console.log("function called");
-
     setTata("tata");
-
     if (e.target.value === "tonton") {
       setTata("tonton");
     }

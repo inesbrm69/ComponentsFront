@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { ThemeProvider, styled } from "styled-components";
 import {
   InputText,
@@ -6,44 +6,68 @@ import {
   Card,
   Paragraph,
   Btn,
-  HttpExample,
+  Section,
+  Heading,
 } from "./components/atoms";
 import {
   FaCarrot,
   FaLemon,
   FaPepperHot,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
-import {Menu, Form} from './components/organisms'
+import {Menu, Form, CardList} from './components/organisms'
 import { NightModeSwitch } from "./components/molecules";
+import { NightModeProvider } from "./contexts"
+
 import style from "./App.css"
-import { Container, Row, Col } from "react-bootstrap";
+import TodoList from "./components/organisms/TodoList/TodoList";
+import TodoListCopy from "./components/organisms/TodoListCopy/TodoListCopy.jsx";
+import {NavBar} from './components/organisms'
+import { Provider } from "react-redux";
+import { store } from "./store";
+import Playlist from "./components/organisms/PlayList/PlayList.jsx"
+
+// Style 
+const StyledCard = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const day = {
-  primary: 'black',
-  secondary: "white"
+  primary: '#fef8f8',
+  secondary: "black",
+  tertiary: "#592519",
+  textNavbar:"white"
 }
 
 const night = {
-  primary:"white",
-  secondary: "black"
+  primary:"#592519",
+  secondary: "white",
+  tertiary: "#fef8f8",
+  textNavbar:"black"
 }
+
+const StyleCardList = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
+// Data
+
 const menuData = [
   {
     icon: <FaPepperHot></FaPepperHot>,
     text: "Chili",
-    data: "chili",
+    slug: "chili",
   },
   {
     icon: <FaCarrot></FaCarrot>,
     text: "Carrot",
-    data: "carrot",
+    slug: "carrot",
   },
   {
     icon: <FaLemon></FaLemon>,
     text: "Lemon",
-    data: "lemon",
+    slug: "lemon",
   },
 ];
 
@@ -63,18 +87,49 @@ const formData = [
   },
 ];
 
+const cardData = [
+  {
+    urlMain: "https://i.imgur.com/oYiTqum.jpg",
+    url: "https://i.imgur.com/sjLMNDM.png",
+    title: "Anonyme",
+    text: "1000€",
+  },
+  {
+    urlMain: "https://i.imgur.com/2DhmtJ4.jpg",
+    url: "https://i.imgur.com/7D7I6dI.png",
+    title: "Daisy",
+    text: "7€",
+  },
+  {
+    urlMain: "https://i.imgur.com/oYiTqum.jpg",
+    url: "https://i.imgur.com/sjLMNDM.png",
+    title: "John John",
+    text: "45€",
+  },
+  {
+    urlMain: "https://i.imgur.com/2DhmtJ4.jpg",
+    url: "https://i.imgur.com/7D7I6dI.png",
+    title: "Daisy Bis",
+    text: "12€",
+  }
+];
+
 const StyledAppContainer = styled.div`
-  background: ${(props) => props.theme.secondary};
+  background: ${(props) => props.theme.primary};
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
+  align-items: center;
+  color: ${props => props.theme.secondary}
+  box-sizing: border-box;
+  font-family: 'Noto Sans JP', sans-serif;
 `;
 
 function App() {
-  const [page, setPage] = useState("lemon");
+  const [page, setPage] = useState("chili");
   const [isNightMode, setIsNightMode] = useState(true);
 
-  const invert = () => (isNightMode ? night : day);
+  const invert = () => (isNightMode ? day : night);
 
   const handleNightMode = () => {
     setIsNightMode(!isNightMode);
@@ -89,7 +144,7 @@ function App() {
           </div>
         );
       case "lemon":
-        return <div>Lemon</div>;
+        return <Playlist>Lemon</Playlist>;
       default:
       case "chili":
         return <div>Chilly</div>;
@@ -100,36 +155,45 @@ function App() {
   };
 
   return (
-    <>
+    <Provider store={store}>
       <ThemeProvider theme={invert(isNightMode)}>
-      <StyledAppContainer>
-          <HttpExample></HttpExample>
-            
-              <Menu data={menuData} handler={handler}>
+      <NightModeProvider
+        value={{
+          changeNightMode: () => {
+            setIsNightMode(!isNightMode);
+          },
+          nightMode: isNightMode,
+        }}
+      >
+        <StyledAppContainer> 
+          <NavBar title="Element Craft" text="profil"></NavBar>
+            <StyleCardList>
+              <CardList data={cardData}></CardList> 
+            </StyleCardList>
+                   
+            <Menu data={menuData} handler={handler}>
               <NightModeSwitch
                 isNightMode={isNightMode}
                 handler={handleNightMode}
               ></NightModeSwitch>
               </Menu>
-
-              <FaMoon></FaMoon>
-              <FaSun></FaSun>
+              <TodoList></TodoList>
+              <TodoListCopy></TodoListCopy>
               <Form data={formData}></Form>
               <InputText />
+              <StyledCard>
+           
+                <Card />
+                <Card></Card>
+              </StyledCard>
               {renderPage()}
-              <Card />
-              <Card />
-              <Card></Card>
+              
               <Btn></Btn>
               <Paragraph></Paragraph>
-      
-          
-              
-      </StyledAppContainer>
-      
+          </StyledAppContainer>
+        </NightModeProvider>
       </ThemeProvider>
-
-    </>
+    </Provider>
   );
 }
 
