@@ -12,7 +12,7 @@ const InputForm = ({ handler, data, icon  = <></>,text = "label", ...props }) =>
             {text}
         </label>
         <InputText
-
+        handleChange={handleChange}
         color={colorInput}
         icon={icon}
         {...props}
